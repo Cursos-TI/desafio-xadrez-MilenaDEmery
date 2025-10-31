@@ -1,32 +1,46 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
-
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
+    printf("Bem-vindo ao Jogo de Xadrez!\n");
+// Declaração de variáveis para peças de xadrez
+    int peca, torre, bispo, rainha;
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
-
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
-
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+// Escolhendo qual peça mover
+    do{
+        printf("Escolha uma peca para mover:\n");
+        printf("1 - Torre\n");
+        printf("2 - Bispo\n");
+        printf("3 - Rainha\n");
+        printf("4 - Sair\n");
+        scanf("%d", &peca);
+// Se a peça for Torre
+        if (peca == 1) {
+            for (torre = 1; torre <= 5; torre++) {
+                printf("Movendo Torre para a %dº casa a direita\n", torre);
+            }
+        }
+// Se a peça for Bispo
+        else if (peca == 2) {
+            bispo = 1;
+            while (bispo >= 1 && bispo <= 5) {
+                printf("Movendo Bispo para a %dº casa na diagonal a direita (cima e direita)\n", bispo);
+                bispo++;
+            }
+        }
+// Se a peça for Rainha
+        else if (peca == 3) {
+            for (rainha = 1; rainha <= 8; rainha++) {
+                printf("Movendo Rainha para a %dº casa a esquerda\n", rainha);
+            }
+        }
+// Se a peça for Sair e opção inválida       
+        else if (peca == 4) {
+            printf("Saindo do jogo...\n");
+        } else {
+            printf("Opcao invalida. Tente novamente.\n");
+        }     
+    } while (peca != 4);
+    printf("Opcao 4 selecionada. Fim do jogo.\n");
 
     return 0;
 }
