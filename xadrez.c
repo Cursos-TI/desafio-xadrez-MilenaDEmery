@@ -1,61 +1,93 @@
 #include <stdio.h>
 
+// Função recursiva para mover a Torre
+void moverTorre(int casaAtual, int totalCasas) {
+    if (casaAtual > totalCasas) return;
+    printf("Movimento %d: Direita\n", casaAtual);
+    moverTorre(casaAtual + 1, totalCasas);
+}
+
+// Função recursiva para mover a Rainha
+void moverRainha(int casaAtual, int totalCasas) {
+    if (casaAtual > totalCasas) return;
+    printf("Movimento %d: Esquerda\n", casaAtual);
+    moverRainha(casaAtual + 1, totalCasas);
+}
+
+// Função recursiva para mover o Bispo
+void moverBispo(int passoAtual, int totalPassos) {
+    if (passoAtual > totalPassos) return;
+
+    for (int i = 1; i <= 1; i++) {
+        printf("Movimento %d: diagonal (cima e direita)\n", passoAtual);
+    }
+    moverBispo(passoAtual + 1, totalPassos);
+}
+
+// Função para mover o Cavalo
+void moverCavalo() {
+    printf("Movimento do cavalo: 2 casa para Cima e 1 casa para Direita\n");
+
+    int cima = 1;
+    int direita = 1;
+
+    for (int i = 1; i <= 2; i++){
+        for (int j = 1; j <= 1; j++) {
+            printf("Movimento %d: Cima\n", cima);
+            cima++;
+
+            if (i < 2) {
+                continue; // Continua para o próximo movimento de cima
+            }
+            printf("Movimento %d: Direita\n", direita);
+            direita++;
+            break; // Sai do loop interno após mover para a direita 
+        }
+    }
+}
+
 int main() {
     printf("Bem-vindo ao Jogo de Xadrez!\n");
-    // Declaração de variáveis para peças de xadrez
-    int peca, torre, bispo, rainha, cavalo;
+
+    // Declaração de variáveis para peça de xadrez
+    int peca;
 
     // Escolhendo qual peça mover
     do{
         printf("\nEscolha uma peca para mover:\n");
         printf("1 - Torre\n");
-        printf("2 - Bispo\n");
-        printf("3 - Rainha\n");
+        printf("2 - Rainha\n");
+        printf("3 - Bispo\n");
         printf("4 - Cavalo\n");
         printf("5 - Sair\n");
         scanf("%d", &peca);
+        
         // Se a peça for Torre
         if (peca == 1) {
             printf("\nMovimento da Torre: 5 casas para a direita\n");
-            for (torre = 1; torre <= 5; torre++) {
-                printf("Movimento %d: direita\n", torre);
-            }
+            moverTorre(1, 5); // Chama a função recursiva para mover a Torre
         }
-        // Se a peça for Bispo
-        else if (peca == 2) {
-            bispo = 1;
-            printf("\nMovimento do Bispo: 5 casas na diagonal (cima e direita)\n");
-            while (bispo >= 1 && bispo <= 5) {
-                printf("Movimento %d: diagonal (cima e direita)\n", bispo);
-                bispo++;
-            }
-        }
+
         // Se a peça for Rainha
-        else if (peca == 3) {
+        else if (peca == 2) {
             printf("\nMovimento da Rainha: 8 casas para a esquerda\n");
-            for (rainha = 1; rainha <= 8; rainha++) {
-                printf("Movimento %d: esquerda\n", rainha);
-            }
+            moverRainha(1, 8); // Chama a função recursiva para mover a Rainha
         }
+
+        // Se a peça for Bispo
+        else if (peca == 3) {
+            printf("\nMovimento do Bispo: 5 casas na diagonal (cima e direita)\n");
+            moverBispo(1, 5); // Chama a função recursiva para mover o Bispo
+        }
+
         // Se a peça for Cavalo
         else if (peca == 4) {
-            printf("Movimento do Cavalo: 2 casas para baixo e 1 casa para a esquerda\n");
-            for(cavalo = 1; cavalo <= 2; cavalo++){
-                printf("Movimento %d: Baixo\n", cavalo);
-
-                if (cavalo == 2) {
-                    int esquerda = 1;
-                    while (esquerda <= 1) {
-                        printf("Movimento %d: Esquerda\n", esquerda);
-                        esquerda++;
-                    }
-                }
-            }
+            moverCavalo(); // Chama a função para mover o Cavalo
         }
-        // Saída do jogo
+
+        // Saída do jogo e opção inválida
         else if (peca == 5) {
-            printf("Saindo do Jogo...\n");
-        // Opção invalida    
+            printf("Saindo do Jogo...\n");  
         }else {
             printf("Opçao invalida. Tente novamente.\n");
         }
