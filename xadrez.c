@@ -45,7 +45,10 @@ int main() {
 
                 if (cavalo == 2) {
                     int esquerda = 1;
-                    printf("Movimento %d: Esquerda\n", esquerda);
+                    while (esquerda <= 1) {
+                        printf("Movimento %d: Esquerda\n", esquerda);
+                        esquerda++;
+                    }
                 }
             }
         }
